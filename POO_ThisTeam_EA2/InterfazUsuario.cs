@@ -100,6 +100,8 @@ namespace POO_ThisTeam_EA2
             }
         }
 
+
+        // Materia
         public void Materia()
         {
             bool dentroMenuMateria = true;
@@ -159,10 +161,20 @@ namespace POO_ThisTeam_EA2
             Console.Write("Ingrese el nuevo ID de la materia: ");
             int nuevoIdMateria = int.Parse(Console.ReadLine());
 
-            Escuela.ActualizarMateria(idMateria, nuevoNombre, nuevosCreditos, nuevoIdMateria);
-            Console.WriteLine("Materia actualizada exitosamente.");
+            int resultado = Escuela.ActualizarMateria(idMateria, nuevoNombre, nuevosCreditos, nuevoIdMateria);
+
+            if (resultado == 1)
+            {
+                Console.WriteLine("Materia actualizada exitosamente.");
+            }
+            else
+            {
+                Console.WriteLine("La materia no fue encontrada.");
+            }
         }
 
+
+        // Grupo
         public void Grupo()
         {
             bool dentroMenuGrupo = true;
@@ -191,7 +203,7 @@ namespace POO_ThisTeam_EA2
             }
         }
 
-        ///////////////
+
         public void RegistrarGrupo()
         {
             Console.Write("Ingrese el ID del grupo: ");
@@ -214,9 +226,19 @@ namespace POO_ThisTeam_EA2
             Console.Write("Ingrese el nuevo ID del grupo: ");
             int nuevoIdGrupo = int.Parse(Console.ReadLine());
 
-            Escuela.ActualizarGrupo(idGrupo, nuevoNombre, nuevoIdGrupo);
-            Console.WriteLine("Grupo actualizado exitosamente.");
+            Console.Write("Ingrese el ID de la materia: ");
+            int idMateria = int.Parse(Console.ReadLine());
+
+            Console.Write("Ingrese el ID del maestro: ");
+            int idMaestro = int.Parse(Console.ReadLine());
+
+            string resultado = Escuela.ActualizarGrupo(idGrupo, nuevoIdGrupo, idMateria, idMaestro);
+
+            // Imprime el mensaje devuelto
+            Console.WriteLine(resultado);
         }
+
+        // Maestro
 
         public void Maestro()
         {
@@ -284,10 +306,20 @@ namespace POO_ThisTeam_EA2
             Console.Write("Ingrese el nuevo ID del maestro: ");
             int nuevoIdMaestro = int.Parse(Console.ReadLine());
 
-            Escuela.ActualizarMaestro(idMaestro, nuevoNombre, nuevoCorreo, nuevoIdMaestro);
-            Console.WriteLine("Maestro actualizado exitosamente.");
+            int resultado = Escuela.ActualizarMaestro(idMaestro, nuevoNombre, nuevoCorreo, nuevoIdMaestro);
+
+            if (resultado == 1)
+            {
+                Console.WriteLine("Maestro actualizado exitosamente.");
+            }
+            else
+            {
+                Console.WriteLine("No se encontró el maestro con el ID especificado.");
+            }
         }
 
+
+        //Alumno 
         public void Alumno()
         {
             bool dentroMenuAlumno = true;

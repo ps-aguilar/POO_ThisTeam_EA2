@@ -15,11 +15,23 @@ namespace POO_ThisTeam_EA2
 
         //Propiedades
 
-        public int IdMateria { get { return idMateria; } }
-        //Propiedad para acceder al nombre.
-        public string NombreMateria { get { return nombreMateria; } }
-        //Propiedad para acceder a la edad.
-        public int Creditos { get { return Creditos; } }
+        public int IdMateria
+        {
+            get { return idMateria; }
+            set { idMateria = value; }
+        }
+
+        public string NombreMateria
+        {
+            get { return nombreMateria; }
+            set { nombreMateria = value; }
+        }
+
+        public int Creditos
+        {
+            get { return creditos; }
+            set { creditos = value; }
+        }
 
         //Constructor
         public Materia(int idMateria, string nombreMateria,  int creditos)

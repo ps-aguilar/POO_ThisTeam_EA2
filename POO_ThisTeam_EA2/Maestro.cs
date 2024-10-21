@@ -18,15 +18,28 @@ namespace POO_ThisTeam_EA2
         //Lista de grupos de los que se encarga el maestro.
         private List<Grupo> gruposImpartidos;
 
-        //Propiedad para acceder al id.
-        public int IdMaestro { get { return idMaestro; } }
-        //Propiedad para acceder al nombre.
-        public string NombreCompleto { get { return nombreCompleto; } }
-        //Propiedad para acceder a la especialidad.
-        public string CorreoElectronico { get { return correoElectronico; } }
-        //Propiedad para acceder a la lista de cursos impartidos.
-        public List<Grupo> GruposImpartidos { get { return gruposImpartidos; } }
+        public int IdMaestro
+        {
+            get { return idMaestro; }
+            set { idMaestro = value; }
+        }
 
+        public string NombreCompleto
+        {
+            get { return nombreCompleto; }
+            set { nombreCompleto = value; }
+        }
+
+        public string CorreoElectronico
+        {
+            get { return correoElectronico; }
+            set { correoElectronico = value; }
+        }
+
+        public List<Grupo> GruposImpartidos
+        {
+            get { return gruposImpartidos; }
+        }
 
         //Constructor 
         public Maestro(int idMaestro, string nombreCompleto, string correoElectronico)

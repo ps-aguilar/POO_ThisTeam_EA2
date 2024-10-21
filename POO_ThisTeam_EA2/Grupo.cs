@@ -14,14 +14,34 @@ namespace POO_ThisTeam_EA2
         private Maestro maestroEncargado;
         private List<Alumno> alumnos;
 
-        //Propiedad para acceder al ID.
-        public int IdGrupo { get { return idGrupo; } }
-        //Propiedad para acceder a la materia.
-        public Materia Materia { get { return materia; } }
-        //Propiedad para acceder al maestro.
-        public Maestro MaestroEncargado { get { return maestroEncargado; } }
-        //Propiedad para acceder a los alumnos.
-        public List<Alumno> Alumnos { get { return alumnos; } }
+        // Propiedad para acceder y modificar el ID del grupo.
+        public int IdGrupo
+        {
+            get { return idGrupo; }
+            set { idGrupo = value; }
+        }
+
+        // Propiedad para acceder a la materia del grupo.
+        public Materia Materia
+        {
+            get { return materia; }
+            set { materia = value; }
+        }
+
+        // Propiedad para acceder al maestro encargado del grupo.
+        public Maestro MaestroEncargado
+        {
+            get { return maestroEncargado; }
+            set { maestroEncargado = value; }
+        }
+
+        // Propiedad para acceder a la lista de alumnos del grupo.
+        public List<Alumno> Alumnos
+        {
+            get { return alumnos; }
+            set { alumnos = value; }
+        }
+
 
         //Constructor
 

@@ -19,17 +19,31 @@ namespace POO_ThisTeam_EA2
         private List<Grupo> gruposInscritos;
 
 
-        //Propiedad para acceder al ID.
-        public int IdAlumno { get { return id; } }
-        //Propiedad para acceder al nombre.
-        public string NombreCompleto { get { return nombreCompleto; } }
-        //Propiedad para acceder a la carrera.
-        public Carrera Carrera { get { return carrera; } }
-        //Propiedad para acceder a la lista de cursos inscritos.
-        public List<Grupo> GruposInscritos { get { return gruposInscritos; } }
+        public int IdAlumno
+        {
+            get { return idAlumno; }
+            set { idAlumno = value; }
+        }
+
+        public string NombreCompleto
+        {
+            get { return nombreCompleto; }
+            set { nombreCompleto = value; }
+        }
+
+        public Carrera Carrera
+        {
+            get { return carrera; }
+            set { carrera = value; }
+        }
+
+        public List<Grupo> GruposInscritos
+        {
+            get { return gruposInscritos; }
+        }
 
         //Constructor 
-        public Alumno(int idAlumno, string nombreCompleto, string carrera)
+        public Alumno(int idAlumno, string nombreCompleto)
         {
             this.idAlumno = idAlumno;
             this.nombreCompleto = nombreCompleto;
