@@ -8,25 +8,18 @@ namespace POO_ThisTeam_EA2
 {
     internal class Escuela
     {
-        //Lista que almacena los grupos existentes en la escuela.
         private List<Grupo> gruposExistentes;
-        //Lista que almacena los maestros existentes en la escuela.
         private List<Maestro> maestrosExistentes;
-        //Lista que almacena los alumnos inscritos en la escuela.
         private List<Alumno> alumnosInscritos;
-        //Lista que almacena las carreras en la escuela.
         private List<Carrera> carrerasExistentes;
-        //Lista que almacena las materias existentes en la escuela.
         private List<Materia> materiasExistentes;
 
-
-        //Constructor que inicializa las listas.
         public Escuela()
         {
             gruposExistentes = new List<Grupo>();
             maestrosExistentes = new List<Maestro>();
             alumnosInscritos = new List<Alumno>();
-            carrerasExistentes = new List<Carrera>()
+            carrerasExistentes = new List<Carrera>
             {
                 new Carrera(1, "Ingeniería en Software"),
                 new Carrera(2, "Medicina"),
@@ -35,8 +28,7 @@ namespace POO_ThisTeam_EA2
             materiasExistentes = new List<Materia>();
         }
 
-
-        //Carreras
+        // Carreras
         public void AgregarCarrera(Carrera carrera)
         {
             carrerasExistentes.Add(carrera);
@@ -44,52 +36,44 @@ namespace POO_ThisTeam_EA2
 
         public int ActualizarCarrera(int idCarrera, string nuevoNombre, int nuevoIdCarrera)
         {
-            // Buscar la carrera por su ID usando un ciclo for.
             for (int i = 0; i < carrerasExistentes.Count; i++)
             {
                 if (carrerasExistentes[i].IdCarrera == idCarrera)
                 {
-                    // Si encuentra la carrera, actualizar sus valores.
                     carrerasExistentes[i].NombreCarrera = nuevoNombre;
                     carrerasExistentes[i].IdCarrera = nuevoIdCarrera;
-                    return 1; // Devuelve 1 para indicar que se modificó correctamente.
+                    return 1; // Modificado correctamente
                 }
             }
-
-            return -1; // Devuelve -1 si no se encontró la carrera.
+            return -1; // No se encontró la carrera
         }
 
         public string MostrarCarreras()
         {
             if (carrerasExistentes.Count == 0)
             {
-                return "No hay carreras disponibles."; // Si la lista está vacía.
+                return "No hay carreras disponibles.";
             }
 
             string resultado = "Carreras disponibles:\n";
-
-            // Recorre la lista de carreras y concatena el ID y Nombre de cada carrera.
             for (int i = 0; i < carrerasExistentes.Count; i++)
             {
                 resultado += $"ID: {carrerasExistentes[i].IdCarrera}, Nombre: {carrerasExistentes[i].NombreCarrera}\n";
             }
-
-            return resultado; // Devuelve el string con las carreras.
+            return resultado;
         }
 
         public string EliminarCarrera(int idCarrera)
         {
-            // Recorre la lista de carreras para buscar la carrera con el ID proporcionado.
             for (int i = 0; i < carrerasExistentes.Count; i++)
             {
                 if (carrerasExistentes[i].IdCarrera == idCarrera)
                 {
-                    carrerasExistentes.RemoveAt(i); // Elimina la carrera.
-                    return $"La carrera con ID {idCarrera} ha sido eliminada."; // Mensaje de éxito.
+                    carrerasExistentes.RemoveAt(i);
+                    return $"La carrera con ID {idCarrera} ha sido eliminada.";
                 }
             }
-
-            return $"La carrera con ID {idCarrera} no existe."; // Si no se encuentra la carrera.
+            return $"La carrera con ID {idCarrera} no existe.";
         }
 
         // Materia
@@ -107,18 +91,17 @@ namespace POO_ThisTeam_EA2
                     materiasExistentes[i].NombreMateria = nuevoNombre;
                     materiasExistentes[i].Creditos = nuevosCreditos;
                     materiasExistentes[i].IdMateria = nuevoIdMateria;
-                    return 1; // Se modificó correctamente.
+                    return 1; // Modificado correctamente
                 }
             }
-
-            return -1; // No se encontró la materia.
+            return -1; // No se encontró la materia
         }
 
         public string MostrarMaterias()
         {
             if (materiasExistentes.Count == 0)
             {
-                return "No hay materias registradas."; // Si no hay materias.
+                return "No hay materias registradas.";
             }
 
             string resultado = "Materias registradas:\n";
@@ -126,8 +109,7 @@ namespace POO_ThisTeam_EA2
             {
                 resultado += $"ID: {materiasExistentes[i].IdMateria}, Nombre: {materiasExistentes[i].NombreMateria}, Créditos: {materiasExistentes[i].Creditos}\n";
             }
-
-            return resultado; // Retorna la lista de materias.
+            return resultado;
         }
 
         public string EliminarMateria(int idMateria)
@@ -136,16 +118,14 @@ namespace POO_ThisTeam_EA2
             {
                 if (materiasExistentes[i].IdMateria == idMateria)
                 {
-                    materiasExistentes.RemoveAt(i); // Elimina la materia.
-                    return $"La materia con ID {idMateria} ha sido eliminada."; // Mensaje de éxito.
+                    materiasExistentes.RemoveAt(i);
+                    return $"La materia con ID {idMateria} ha sido eliminada.";
                 }
             }
-
-            return $"La materia con ID {idMateria} no existe."; // Si no se encontró.
+            return $"La materia con ID {idMateria} no existe.";
         }
 
         // Grupo
-
         public void AgregarGrupo(Grupo grupo)
         {
             gruposExistentes.Add(grupo);
@@ -153,38 +133,34 @@ namespace POO_ThisTeam_EA2
 
         public string ActualizarGrupo(int idGrupo, int nuevoIdGrupo, int idMateria, int idMaestro)
         {
-            // Buscar el grupo por su ID
             for (int i = 0; i < gruposExistentes.Count; i++)
             {
                 if (gruposExistentes[i].IdGrupo == idGrupo)
                 {
-                    // Buscar materia y maestro
                     Materia materiaEncontrada = BuscarMateria(idMateria);
                     Maestro maestroEncontrado = BuscarMaestro(idMaestro);
 
-                    // Actualizar el grupo si ambos existen
                     if (materiaEncontrada != null && maestroEncontrado != null)
                     {
                         gruposExistentes[i].IdGrupo = nuevoIdGrupo;
                         gruposExistentes[i].Materia = materiaEncontrada;
                         gruposExistentes[i].MaestroEncargado = maestroEncontrado;
-                        return "Grupo actualizado exitosamente."; // Mensaje de éxito
+                        return "Grupo actualizado exitosamente.";
                     }
                     else
                     {
                         if (materiaEncontrada == null)
                         {
-                            return "El ID de la materia no existe."; // Mensaje de error
+                            return "El ID de la materia no existe.";
                         }
                         if (maestroEncontrado == null)
                         {
-                            return "El ID del maestro no existe."; // Mensaje de error
+                            return "El ID del maestro no existe.";
                         }
                     }
                 }
             }
-
-            return "Grupo no encontrado."; // Mensaje de error
+            return "Grupo no encontrado.";
         }
 
         public string MostrarGrupos()
@@ -199,26 +175,22 @@ namespace POO_ThisTeam_EA2
             {
                 resultado += $"ID: {gruposExistentes[i].IdGrupo}\n";
             }
-
             return resultado;
         }
 
         public string EliminarGrupo(int idGrupo)
         {
-            // Buscar el grupo por su ID.
             for (int i = 0; i < gruposExistentes.Count; i++)
             {
                 if (gruposExistentes[i].IdGrupo == idGrupo)
                 {
-                    gruposExistentes.RemoveAt(i); // Elimina el grupo.
+                    gruposExistentes.RemoveAt(i);
                     return $"El grupo con ID {idGrupo} ha sido eliminado.";
                 }
             }
-
             return $"El grupo con ID {idGrupo} no existe.";
         }
 
-        // Método para buscar una materia por su ID
         private Materia BuscarMateria(int idMateria)
         {
             for (int i = 0; i < materiasExistentes.Count; i++)
@@ -231,7 +203,6 @@ namespace POO_ThisTeam_EA2
             return null; // Retorna null si no se encuentra
         }
 
-        // Método para buscar un maestro por su ID
         private Maestro BuscarMaestro(int idMaestro)
         {
             for (int i = 0; i < maestrosExistentes.Count; i++)
@@ -244,8 +215,7 @@ namespace POO_ThisTeam_EA2
             return null; // Retorna null si no se encuentra
         }
 
-        //Maestro
-
+        // Maestro
         public void AgregarMaestro(Maestro maestro)
         {
             maestrosExistentes.Add(maestro);
@@ -260,10 +230,10 @@ namespace POO_ThisTeam_EA2
                     maestrosExistentes[i].NombreCompleto = nuevoNombre;
                     maestrosExistentes[i].CorreoElectronico = nuevoCorreo;
                     maestrosExistentes[i].IdMaestro = nuevoIdMaestro;
-                    return 1; // Actualización exitosa.
+                    return 1; // Actualización exitosa
                 }
             }
-            return -1; // Maestro no encontrado.
+            return -1; // Maestro no encontrado
         }
 
         public string MostrarMaestros()
@@ -274,12 +244,10 @@ namespace POO_ThisTeam_EA2
             }
 
             string resultado = "Maestros registrados:\n";
-
             for (int i = 0; i < maestrosExistentes.Count; i++)
             {
                 resultado += $"ID: {maestrosExistentes[i].IdMaestro}, Nombre: {maestrosExistentes[i].NombreCompleto}, Correo: {maestrosExistentes[i].CorreoElectronico}\n";
             }
-
             return resultado;
         }
 
@@ -293,7 +261,6 @@ namespace POO_ThisTeam_EA2
                     return $"El maestro con ID {idMaestro} ha sido eliminado.";
                 }
             }
-
             return $"El maestro con ID {idMaestro} no existe.";
         }
 
@@ -302,40 +269,35 @@ namespace POO_ThisTeam_EA2
             Maestro maestro = null;
             Grupo grupo = null;
 
-            // Buscar el maestro por su ID usando un bucle for
             for (int i = 0; i < maestrosExistentes.Count; i++)
             {
                 if (maestrosExistentes[i].IdMaestro == idMaestro)
                 {
                     maestro = maestrosExistentes[i];
-                    break; // Salir del bucle cuando se encuentre el maestro
+                    break; // Salir del bucle
                 }
             }
 
-            // Buscar el grupo por su ID usando un bucle for
             for (int i = 0; i < gruposExistentes.Count; i++)
             {
                 if (gruposExistentes[i].IdGrupo == idGrupo)
                 {
                     grupo = gruposExistentes[i];
-                    break; // Salir del bucle cuando se encuentre el grupo
+                    break; // Salir del bucle
                 }
             }
 
-            // Verificar si el maestro y el grupo fueron encontrados
             if (maestro == null)
             {
-                return $"El maestro con ID {idMaestro} no existe.";
+                return "Maestro no encontrado.";
             }
-
             if (grupo == null)
             {
-                return $"El grupo con ID {idGrupo} no existe.";
+                return "Grupo no encontrado.";
             }
 
-            // Asignar el grupo al maestro
-            maestro.GruposImpartidos.Add(grupo);
-            return $"El maestro {maestro.NombreCompleto} ha sido asignado al grupo ID {grupo.IdGrupo.ToString()}.";
+            grupo.MaestroEncargado = maestro;
+            return $"Maestro {maestro.NombreCompleto} asignado al grupo {grupo.IdGrupo} correctamente.";
         }
 
         // Alumnos
@@ -352,26 +314,24 @@ namespace POO_ThisTeam_EA2
                 {
                     alumnosInscritos[i].NombreCompleto = nuevoNombre;
                     alumnosInscritos[i].IdAlumno = nuevoIdAlumno;
-                    return 1; // Actualización exitosa.
+                    return 1; // Actualización exitosa
                 }
             }
-            return -1; // Alumno no encontrado.
+            return -1; // Alumno no encontrado
         }
 
         public string MostrarAlumnos()
         {
             if (alumnosInscritos.Count == 0)
             {
-                return "No hay alumnos registrados.";
+                return "No hay alumnos inscritos.";
             }
 
-            string resultado = "Alumnos registrados:\n";
-
+            string resultado = "Alumnos inscritos:\n";
             for (int i = 0; i < alumnosInscritos.Count; i++)
             {
                 resultado += $"ID: {alumnosInscritos[i].IdAlumno}, Nombre: {alumnosInscritos[i].NombreCompleto}\n";
             }
-
             return resultado;
         }
 
@@ -385,49 +345,7 @@ namespace POO_ThisTeam_EA2
                     return $"El alumno con ID {idAlumno} ha sido eliminado.";
                 }
             }
-
             return $"El alumno con ID {idAlumno} no existe.";
-        }
-
-        public string AsignarAlumnoAGrupo(int idAlumno, int idGrupo)
-        {
-            Alumno alumno = null;
-            Grupo grupo = null;
-
-            // Buscar el alumno por su ID usando un bucle for
-            for (int i = 0; i < alumnosInscritos.Count; i++)
-            {
-                if (alumnosInscritos[i].IdAlumno == idAlumno)
-                {
-                    alumno = alumnosInscritos[i];
-                    break; // Salir del bucle cuando se encuentre el alumno
-                }
-            }
-
-            // Buscar el grupo por su ID usando un bucle for
-            for (int i = 0; i < gruposExistentes.Count; i++)
-            {
-                if (gruposExistentes[i].IdGrupo == idGrupo)
-                {
-                    grupo = gruposExistentes[i];
-                    break; // Salir del bucle cuando se encuentre el grupo
-                }
-            }
-
-            // Verificar si el alumno y el grupo fueron encontrados
-            if (alumno == null)
-            {
-                return $"El alumno con ID {idAlumno} no existe.";
-            }
-
-            if (grupo == null)
-            {
-                return $"El grupo con ID {idGrupo} no existe.";
-            }
-
-            // Asignar el grupo al alumno
-            alumno.GruposInscritos.Add(grupo);
-            return $"El alumno {alumno.NombreCompleto} ha sido asignado al grupo con ID {grupo.IdGrupo.ToString()}.";
         }
     }
 }

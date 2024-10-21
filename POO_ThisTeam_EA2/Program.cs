@@ -2,27 +2,31 @@
 {
     internal class Program
     {
-        static void InterfazUsuario()
+        static void InterfazUsuario(Escuela escuela) // Aceptar un parámetro Escuela
         {
             try
             {
-                InterfazUsuario interfazUsuario = new InterfazUsuario();
+                // Pasar la instancia de Escuela al constructor de InterfazUsuario
+                InterfazUsuario interfazUsuario = new InterfazUsuario(escuela);
             }
-
-            catch
+            catch (Exception ex)
             {
                 Console.Clear();
                 Console.WriteLine("El valor ingresado no es válido");
                 Console.WriteLine("\nPresione cualquier tecla para regresar al Menu");
                 Console.ReadLine();
                 Console.Clear();
-                InterfazUsuario();
+                InterfazUsuario(escuela); // Pasar la misma instancia de Escuela al volver a llamar
             }
         }
 
         static void Main(string[] args)
         {
-            InterfazUsuario();
+            // Crear una instancia de Escuela
+            Escuela escuela = new Escuela();
+
+            // Llamar a InterfazUsuario pasando la instancia de Escuela
+            InterfazUsuario(escuela);
         }
     }
 }
